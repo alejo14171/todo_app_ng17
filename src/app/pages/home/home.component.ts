@@ -15,6 +15,17 @@ export class HomeComponent {
     'Crear proyecto',
     'Crear componentes',
     'Crear servicios',
-  ])
+  ]);
+
+  chengeHandler(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newTask = input.value;
+    this.tasks.update((tasks) => [...tasks, newTask]); //crea un nuevo estado
+    input.value = "";
+  }
+
+  deleteTask(index: number) {
+    this.tasks.update((tasks) => tasks.filter((task, position) => position !== index));
+  }
 
 }
